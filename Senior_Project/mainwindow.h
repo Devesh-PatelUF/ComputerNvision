@@ -14,10 +14,18 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr, QString dirPath = "");
     ~MainWindow();
+
+private slots:
+    void on_captureButton_clicked();
+
+    void on_recaptureButton_clicked(bool checked);
+
+    void on_continueButton_clicked(bool checked);
 
 private:
     Ui::MainWindow *ui;
+    QString dirPath;
 };
 #endif // MAINWINDOW_H
