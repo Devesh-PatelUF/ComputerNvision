@@ -23,20 +23,10 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="ImagePlaceholder" native="true">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>90</y>
-      <width>800</width>
-      <height>600</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
+   <widget class="QPushButton" name="captureButton">
+    <property name="enabled">
      <bool>true</bool>
     </property>
-   </widget>
-   <widget class="QPushButton" name="captureButton">
     <property name="geometry">
      <rect>
       <x>410</x>
@@ -52,6 +42,100 @@
     </property>
     <property name="text">
      <string>Capture</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="recaptureButton">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>730</y>
+      <width>446</width>
+      <height>115</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>28</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Recapture</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="continueButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>730</y>
+      <width>446</width>
+      <height>115</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>28</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Continue</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="objectNameLable">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>0</y>
+      <width>361</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>28</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Object Identifier</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="definitionLabel">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>60</y>
+      <width>801</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Definition</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="imageLabel">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>90</y>
+      <width>800</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="lineWidth">
+     <number>2</number>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
