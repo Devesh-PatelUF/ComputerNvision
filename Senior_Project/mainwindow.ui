@@ -22,6 +22,10 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #f3957c
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="captureButton">
     <property name="enabled">
@@ -35,10 +39,38 @@
       <height>115</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>115</height>
+     </size>
+    </property>
     <property name="font">
      <font>
       <pointsize>28</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushBuuton{
+	border: 1px solid;
+	border-radius: 57px;
+	border-color: blue;
+}
+
+QPushButton:enabled {
+	border-radius: 57px;
+	background-color: #0021A5;
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #6b87f1;
+	color: #fffffe;
+}
+QPushButton:hover:!pressed {
+	background-color: #E1f4FF;
+	color: #0c2f70
+}</string>
     </property>
     <property name="text">
      <string>Capture</string>
@@ -57,6 +89,28 @@
      <font>
       <pointsize>28</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushBuuton{
+	border: 1px solid;
+	border-radius: 50px;
+	border-color: blue;
+}
+
+QPushButton:enabled {
+	border-radius: 57px;
+	background-color: #0021A5;
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #6b87f1;
+	color: #fffffe;
+}
+QPushButton:hover:!pressed {
+	background-color: #E1f4FF;
+	color: #0c2f70
+}</string>
     </property>
     <property name="text">
      <string>Recapture</string>
@@ -78,6 +132,28 @@
      <font>
       <pointsize>28</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushBuuton{
+	border: 1px solid;
+	border-radius: 50px;
+	border-color: blue;
+}
+
+QPushButton:enabled {
+	border-radius: 57px;
+	background-color: #0021A5;
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #6b87f1;
+	color: #fffffe;
+}
+QPushButton:hover:!pressed {
+	background-color: #E1f4FF;
+	color: #0c2f70
+}</string>
     </property>
     <property name="text">
      <string>Continue</string>
@@ -138,6 +214,12 @@
      <string/>
     </property>
    </widget>
+   <zorder>recaptureButton</zorder>
+   <zorder>continueButton</zorder>
+   <zorder>objectNameLable</zorder>
+   <zorder>definitionLabel</zorder>
+   <zorder>imageLabel</zorder>
+   <zorder>captureButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

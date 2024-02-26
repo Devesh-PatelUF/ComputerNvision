@@ -40,24 +40,87 @@ public:
         MainWindow->resize(1280, 900);
         MainWindow->setMinimumSize(QSize(1280, 900));
         MainWindow->setAutoFillBackground(false);
+        MainWindow->setStyleSheet(QString::fromUtf8("background-color: #f3957c\n"
+""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         captureButton = new QPushButton(centralwidget);
         captureButton->setObjectName("captureButton");
         captureButton->setEnabled(true);
         captureButton->setGeometry(QRect(410, 730, 446, 115));
+        captureButton->setMinimumSize(QSize(0, 115));
         QFont font;
         font.setPointSize(28);
         captureButton->setFont(font);
+        captureButton->setStyleSheet(QString::fromUtf8("QPushBuuton{\n"
+"	border: 1px solid;\n"
+"	border-radius: 57px;\n"
+"	border-color: blue;\n"
+"}\n"
+"\n"
+"QPushButton:enabled {\n"
+"	border-radius: 57px;\n"
+"	background-color: #0021A5;\n"
+"	color: white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: #6b87f1;\n"
+"	color: #fffffe;\n"
+"}\n"
+"QPushButton:hover:!pressed {\n"
+"	background-color: #E1f4FF;\n"
+"	color: #0c2f70\n"
+"}"));
         recaptureButton = new QPushButton(centralwidget);
         recaptureButton->setObjectName("recaptureButton");
         recaptureButton->setGeometry(QRect(110, 730, 446, 115));
         recaptureButton->setFont(font);
+        recaptureButton->setStyleSheet(QString::fromUtf8("QPushBuuton{\n"
+"	border: 1px solid;\n"
+"	border-radius: 50px;\n"
+"	border-color: blue;\n"
+"}\n"
+"\n"
+"QPushButton:enabled {\n"
+"	border-radius: 57px;\n"
+"	background-color: #0021A5;\n"
+"	color: white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: #6b87f1;\n"
+"	color: #fffffe;\n"
+"}\n"
+"QPushButton:hover:!pressed {\n"
+"	background-color: #E1f4FF;\n"
+"	color: #0c2f70\n"
+"}"));
         continueButton = new QPushButton(centralwidget);
         continueButton->setObjectName("continueButton");
         continueButton->setEnabled(true);
         continueButton->setGeometry(QRect(710, 730, 446, 115));
         continueButton->setFont(font);
+        continueButton->setStyleSheet(QString::fromUtf8("QPushBuuton{\n"
+"	border: 1px solid;\n"
+"	border-radius: 50px;\n"
+"	border-color: blue;\n"
+"}\n"
+"\n"
+"QPushButton:enabled {\n"
+"	border-radius: 57px;\n"
+"	background-color: #0021A5;\n"
+"	color: white;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"	background-color: #6b87f1;\n"
+"	color: #fffffe;\n"
+"}\n"
+"QPushButton:hover:!pressed {\n"
+"	background-color: #E1f4FF;\n"
+"	color: #0c2f70\n"
+"}"));
         objectNameLable = new QLabel(centralwidget);
         objectNameLable->setObjectName("objectNameLable");
         objectNameLable->setGeometry(QRect(470, 0, 361, 51));
@@ -74,6 +137,12 @@ public:
         imageLabel->setFrameShape(QFrame::Box);
         imageLabel->setLineWidth(2);
         MainWindow->setCentralWidget(centralwidget);
+        recaptureButton->raise();
+        continueButton->raise();
+        objectNameLable->raise();
+        definitionLabel->raise();
+        imageLabel->raise();
+        captureButton->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
         menubar->setGeometry(QRect(0, 0, 1280, 25));
