@@ -35,6 +35,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_captureButton_clicked()
 {
     qDebug( "Capture button clicked" );
+    //new change
 
     QDir dir(dirPath);
     QString relativePath;
