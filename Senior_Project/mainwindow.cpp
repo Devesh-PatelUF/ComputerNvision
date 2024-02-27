@@ -39,7 +39,8 @@ void MainWindow::on_captureButton_clicked()
 
     QDir dir(dirPath);
     QString relativePath;
-    relativePath = dir.relativeFilePath("C:/Users/deves/Desktop/College/Year 4/Semester 2/Senior Project/Project/Computer-nVision/Senior_Project/image/object_image.jpg");
+    relativePath = "../Senior_Project/image/object_image.jpg";
+
     QPixmap pic(relativePath);
     ui->imageLabel->setPixmap(pic);
 
