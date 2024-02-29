@@ -1,16 +1,10 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include <QPalette>
-#include <QDebug>
-#include <QPixmap>
-#include <QDir>
 
-
-MainWindow::MainWindow(QWidget *parent, QString dirPath)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    this->dirPath = dirPath;
     ui->setupUi(this);
 
     ui->imageLabel->setScaledContents(true);
@@ -30,13 +24,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
 void MainWindow::on_captureButton_clicked()
 {
     qDebug( "Capture button clicked" );
 
-    QDir dir(dirPath);
     QString relativePath;
     relativePath = "../Senior_Project/image/object_image.jpg";
 
@@ -49,7 +40,6 @@ void MainWindow::on_captureButton_clicked()
     ui->recaptureButton->setVisible(true);
     ui->continueButton->setVisible(true);
     ui->captureButton->setVisible(false);
-
 }
 
 

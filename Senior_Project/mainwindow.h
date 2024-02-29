@@ -14,7 +14,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr, QString dirPath = "");
+    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -26,6 +26,5 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QString dirPath;
 };
 #endif // MAINWINDOW_H
