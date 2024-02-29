@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w = new MainWindow(nullptr, a.applicationDirPath());
+    MainWindow w;
     QPalette pal = QPalette();
     pal.setColor(QPalette::Window, Qt::white);
     w.setPalette(pal);
