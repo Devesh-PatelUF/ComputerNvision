@@ -27,7 +27,7 @@ public:
     QPushButton *captureButton;
     QPushButton *recaptureButton;
     QPushButton *continueButton;
-    QLabel *objectNameLable;
+    QLabel *objectNameLabel;
     QLabel *definitionLabel;
     QLabel *imageLabel;
     QMenuBar *menubar;
@@ -121,10 +121,10 @@ public:
 "	background-color: #E1f4FF;\n"
 "	color: #0c2f70\n"
 "}"));
-        objectNameLable = new QLabel(centralwidget);
-        objectNameLable->setObjectName("objectNameLable");
-        objectNameLable->setGeometry(QRect(470, 0, 361, 51));
-        objectNameLable->setFont(font);
+        objectNameLabel = new QLabel(centralwidget);
+        objectNameLabel->setObjectName("objectNameLabel");
+        objectNameLabel->setGeometry(QRect(470, 0, 361, 51));
+        objectNameLabel->setFont(font);
         definitionLabel = new QLabel(centralwidget);
         definitionLabel->setObjectName("definitionLabel");
         definitionLabel->setGeometry(QRect(210, 60, 801, 111));
@@ -139,7 +139,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         recaptureButton->raise();
         continueButton->raise();
-        objectNameLable->raise();
+        objectNameLabel->raise();
         definitionLabel->raise();
         imageLabel->raise();
         captureButton->raise();
@@ -162,7 +162,7 @@ public:
         captureButton->setText(QCoreApplication::translate("MainWindow", "Capture", nullptr));
         recaptureButton->setText(QCoreApplication::translate("MainWindow", "Recapture", nullptr));
         continueButton->setText(QCoreApplication::translate("MainWindow", "Continue", nullptr));
-        objectNameLable->setText(QCoreApplication::translate("MainWindow", "Object Identifier", nullptr));
+        objectNameLabel->setText(QCoreApplication::translate("MainWindow", "Object Identifier", nullptr));
         definitionLabel->setText(QCoreApplication::translate("MainWindow", "Definition", nullptr));
         imageLabel->setText(QString());
     } // retranslateUi
