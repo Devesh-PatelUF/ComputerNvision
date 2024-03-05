@@ -1,2 +1,1 @@
-# Computer-nVision
-Senior Project Spring 2024
+Senior Project for Computer nVision
