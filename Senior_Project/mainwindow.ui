@@ -159,7 +159,7 @@ QPushButton:hover:!pressed {
      <string>Continue</string>
     </property>
    </widget>
-   <widget class="QLabel" name="objectNameLable">
+   <widget class="QLabel" name="objectNameLabel">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -216,7 +216,7 @@ QPushButton:hover:!pressed {
    </widget>
    <zorder>recaptureButton</zorder>
    <zorder>continueButton</zorder>
-   <zorder>objectNameLable</zorder>
+   <zorder>objectNameLabel</zorder>
    <zorder>definitionLabel</zorder>
    <zorder>imageLabel</zorder>
    <zorder>captureButton</zorder>
