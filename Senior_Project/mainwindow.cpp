@@ -32,6 +32,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+Ui::MainWindow* MainWindow::getUi()
+{
+    return ui;
+}
+
 void MainWindow::on_captureButton_clicked()
 {
     qDebug( "Capture button clicked" );
@@ -44,6 +50,8 @@ void MainWindow::on_captureButton_clicked()
 
     ui->recaptureButton->setChecked(false);
     ui->continueButton->setChecked(false);
+    ui->objectNameLabel->setText("Is this picture correct?");
+    ui->objectNameLabel->setVisible(true);
 
     ui->recaptureButton->setVisible(true);
     ui->continueButton->setVisible(true);
@@ -56,6 +64,7 @@ void MainWindow::on_recaptureButton_clicked(bool checked)
     if (checked) //act as recapture button
     {
         qDebug( "Recapture button clicked" );
+
     }
     else { //act as new object button
         qDebug( "New Object button clicked" );
@@ -66,6 +75,8 @@ void MainWindow::on_recaptureButton_clicked(bool checked)
         ui->imageLabel->setGeometry(210, 90, 800, 600);
 
     }
+    ui->objectNameLabel->setText("Object Name");
+    ui->objectNameLabel->setVisible(false);
     ui->imageLabel->clear();
     ui->recaptureButton->setVisible(false);
     ui->continueButton->setVisible(false);
