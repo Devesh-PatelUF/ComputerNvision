@@ -1,7 +1,7 @@
 QT += testlib
 QT += gui
 QT       += core texttospeech
-QT    += widgets
+QT    += widgets webenginewidgets
 CONFIG += qt warn_on depend_includepath testcase
 
 TEMPLATE = app
