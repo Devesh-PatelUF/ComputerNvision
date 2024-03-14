@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include <QTextToSpeech>
+#include <QWebEngineView>
+
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,5 +32,6 @@ private slots:
 
 private:
     Ui::MainWindow* ui;
+    QWebEngineView* view;
 };
 #endif // MAINWINDOW_H

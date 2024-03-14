@@ -95,10 +95,46 @@ void mainWindowTest::test_capture_button_click()
 
 
 }
-void mainWindowTest::test_recapture_button_click() {}
-void mainWindowTest::test_continue_button_click() {}
-void mainWindowTest::test_newObject_button_click() {}
-void mainWindowTest::test_replayAudio_button_click() {}
+void mainWindowTest::test_recapture_button_click() {
+    Ui::MainWindow* ui = mainWindow->getUi();
+    QTest::mouseClick(ui->captureButton, Qt::LeftButton);
+    QTest::mouseClick(ui->recaptureButton, Qt::LeftButton);
+    QVERIFY(!ui->objectNameLabel->isVisible());
+    QVERIFY(ui->captureButton->isVisible());
+    QVERIFY(ui->objectNameLabel->text().compare("Take another picture!")==0);
+}
+
+void mainWindowTest::test_continue_button_click() {
+    Ui::MainWindow* ui = mainWindow->getUi();
+    QTest::mouseClick(ui->captureButton, Qt::LeftButton);
+    QTest::mouseClick(ui->continueButton, Qt::LeftButton);
+    QVERIFY(ui->objectNameLabel->isVisible());
+    QVERIFY(ui->definitionLabel->isVisible());
+    QVERIFY(ui->objectNameLabel->text().compare("Object")==0);
+    QVERIFY(ui->definitionLabel->text().compare("Definition")==0);
+    QVERIFY(ui->recaptureButton->isVisible());
+    QVERIFY(ui->continueButton->isVisible());
+
+}
+void mainWindowTest::test_newObject_button_click() {
+    Ui::MainWindow* ui = mainWindow->getUi();
+    QTest::mouseClick(ui->captureButton, Qt::LeftButton);
+    QTest::mouseClick(ui->continueButton, Qt::LeftButton);
+    QTest::mouseClick(ui->recaptureButton, Qt::LeftButton);
+    QVERIFY(!ui->objectNameLabel->isVisible());
+    QVERIFY(ui->captureButton->isVisible());
+    QVERIFY(ui->objectNameLabel->text().compare("Take another picture!")==0);
+}
+void mainWindowTest::test_replayAudio_button_click() {
+    Ui::MainWindow* ui = mainWindow->getUi();
+    QTest::mouseClick(ui->captureButton, Qt::LeftButton);
+    QTest::mouseClick(ui->continueButton, Qt::LeftButton);
+    QTest::mouseClick(ui->continueButton, Qt::LeftButton);
+    QVERIFY(ui->objectNameLabel->isVisible());
+    QVERIFY(ui->definitionLabel->isVisible());
+    QVERIFY(ui->objectNameLabel->text().compare("Object")==0);
+    QVERIFY(ui->definitionLabel->text().compare("Definition")==0);
+}
 
 QTEST_MAIN(mainWindowTest)
 
