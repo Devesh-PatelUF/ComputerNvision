@@ -174,6 +174,7 @@ void loop()
           {
             content_type = "Content-type: image/jpeg";
           }
+          esp_camera_fb_return(camera_buf);
           digitalWrite(4, LOW);
         }
         string return_string = (string("HTTP/1.1 ") + to_string(code) + " OK");
@@ -189,6 +190,7 @@ void loop()
         client.stop();
         Serial.println("Client disconnected.");
         Serial.println("");
+        
       }
     }
   }
