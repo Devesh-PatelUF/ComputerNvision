@@ -2,7 +2,10 @@
 #include "./ui_mainwindow.h"
 #include <QTextToSpeech>
 #include <QMouseEvent>
-#include<QTimer>
+#include <QProcess>
+#include <QString>
+#include <QFile>
+
 
 
 QTextToSpeech *speech = new QTextToSpeech();
@@ -17,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->imageLabel->setGeometry(225, 90, 800, 600);
 
 
+
+
+
     ui->recaptureButton->setVisible(false);
     ui->continueButton->setVisible(false);
     ui->definitionLabel->setVisible(false);
@@ -24,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->recaptureButton->setCheckable(true);
     ui->continueButton->setCheckable(true);
     ui->imageLabel->setVisible(false);
+    ui->definitionLabel->setWordWrap(true);
 
     //displaying the videofeed from the web
     view = new QWebEngineView;
@@ -125,7 +132,44 @@ void MainWindow::on_continueButton_clicked(bool checked)
         ui->definitionLabel->setVisible(true);
         ui->objectNameLabel->setVisible(true);
         ui->imageLabel->setGeometry(280,180, 704, 528);
-        ui->objectNameLabel->setText("Object");
+
+
+        //saving to file
+        QFile file("../image/gptImage.png");
+        file.open(QIODevice::WriteOnly);
+        QPixmap imageMap = ui->imageLabel->pixmap();
+        imageMap.save(&file, "PNG");
+
+
+
+        //DO CHATGPT STUFF FOR OBJECT IDENTIFICATION USING A PYTHON SCRIPT
+
+        QStringList params = QStringList() << "../Python/chatgptScript.py";
+        QProcess process;
+        process.start("python", params);
+
+        process.waitForFinished(-1); // will wait forever until finished
+
+
+        QString proc_stdout = process.readAllStandardOutput();
+        qDebug(proc_stdout.toLatin1());
+        QString proc_stderr = process.readAllStandardError();
+        qDebug(proc_stderr.toLatin1());
+
+        QStringList lines = proc_stdout.split( ": ");
+        ui->objectNameLabel->setText(lines[0]);
+        ui->definitionLabel->setText(lines[1]);
+
+        //ui->definitionLabel->adjustSize();
+
+
+
+
+
+
+
+
+
 
         QString text = ui->objectNameLabel->text() + " " + ui->definitionLabel->text();
 
