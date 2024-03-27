@@ -208,18 +208,100 @@ QPushButton:hover:!pressed {
      <enum>QFrame::Box</enum>
     </property>
     <property name="lineWidth">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="loadingWindow">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>250</y>
+      <width>361</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #ffffff;
+border-color: #000000;
+border-width: 3px;
+border-style: outset</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="loadingText">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>260</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #ffffff;
+color: #000000</string>
+    </property>
+    <property name="text">
+     <string>Loading...</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>340</y>
+      <width>361</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;
+color: black;
+border-style: solid;
+border-width: 3px;
+border-top: 0px
+
+</string>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>imageLabel</zorder>
    <zorder>recaptureButton</zorder>
    <zorder>continueButton</zorder>
    <zorder>objectNameLabel</zorder>
    <zorder>definitionLabel</zorder>
-   <zorder>imageLabel</zorder>
    <zorder>captureButton</zorder>
+   <zorder>loadingWindow</zorder>
+   <zorder>loadingText</zorder>
+   <zorder>progressBar</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -227,7 +309,7 @@ QPushButton:hover:!pressed {
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
