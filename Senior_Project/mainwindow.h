@@ -4,7 +4,15 @@
 #include <QMainWindow>
 #include <QTextToSpeech>
 #include <QWebEngineView>
-
+#include <QTextToSpeech>
+#include <QMouseEvent>
+#include <QProcess>
+#include <QString>
+#include <QFile>
+#include <QTimer>
+#include <QTime>
+#include <QEventLoop>
+#include <QCoreApplication>
 
 
 
@@ -23,6 +31,8 @@ public:
     Ui::MainWindow* getUi();
     ~MainWindow();
 
+
+
 private slots:
     void on_captureButton_clicked();
 
@@ -30,8 +40,15 @@ private slots:
 
     void on_continueButton_clicked(bool checked);
 
+    void onProcessComplete();
+
 private:
     Ui::MainWindow* ui;
     QWebEngineView* view;
+    QProcess process;
+    int loadingVal;
+
+    void updateLoading();
+    void delay(double time);
 };
 #endif // MAINWINDOW_H

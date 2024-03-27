@@ -14,6 +14,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
@@ -30,6 +31,9 @@ public:
     QLabel *objectNameLabel;
     QLabel *definitionLabel;
     QLabel *imageLabel;
+    QLabel *loadingWindow;
+    QLabel *loadingText;
+    QProgressBar *progressBar;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -135,17 +139,52 @@ public:
         imageLabel->setObjectName("imageLabel");
         imageLabel->setGeometry(QRect(210, 90, 800, 600));
         imageLabel->setFrameShape(QFrame::Box);
-        imageLabel->setLineWidth(2);
+        imageLabel->setLineWidth(0);
+        loadingWindow = new QLabel(centralwidget);
+        loadingWindow->setObjectName("loadingWindow");
+        loadingWindow->setGeometry(QRect(460, 250, 361, 121));
+        loadingWindow->setAutoFillBackground(false);
+        loadingWindow->setStyleSheet(QString::fromUtf8("background-color: #ffffff;\n"
+"border-color: #000000;\n"
+"border-width: 3px;\n"
+"border-style: outset"));
+        loadingWindow->setMargin(0);
+        loadingText = new QLabel(centralwidget);
+        loadingText->setObjectName("loadingText");
+        loadingText->setGeometry(QRect(470, 260, 341, 51));
+        QFont font2;
+        font2.setPointSize(20);
+        font2.setKerning(true);
+        loadingText->setFont(font2);
+        loadingText->setAutoFillBackground(false);
+        loadingText->setStyleSheet(QString::fromUtf8("background-color: #ffffff;\n"
+"color: #000000"));
+        loadingText->setAlignment(Qt::AlignCenter);
+        progressBar = new QProgressBar(centralwidget);
+        progressBar->setObjectName("progressBar");
+        progressBar->setGeometry(QRect(460, 340, 361, 31));
+        progressBar->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+"color: black;\n"
+"border-style: solid;\n"
+"border-width: 3px;\n"
+"border-top: 0px\n"
+"\n"
+""));
+        progressBar->setValue(24);
+        progressBar->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralwidget);
+        imageLabel->raise();
         recaptureButton->raise();
         continueButton->raise();
         objectNameLabel->raise();
         definitionLabel->raise();
-        imageLabel->raise();
         captureButton->raise();
+        loadingWindow->raise();
+        loadingText->raise();
+        progressBar->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1280, 25));
+        menubar->setGeometry(QRect(0, 0, 1280, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -165,6 +204,8 @@ public:
         objectNameLabel->setText(QCoreApplication::translate("MainWindow", "Object Identifier", nullptr));
         definitionLabel->setText(QCoreApplication::translate("MainWindow", "Definition", nullptr));
         imageLabel->setText(QString());
+        loadingWindow->setText(QString());
+        loadingText->setText(QCoreApplication::translate("MainWindow", "Loading...", nullptr));
     } // retranslateUi
 
 };
