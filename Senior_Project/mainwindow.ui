@@ -16,6 +16,11 @@
     <height>900</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <family>MS Reference Sans Serif</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -33,9 +38,9 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>730</y>
-      <width>446</width>
+      <x>380</x>
+      <y>720</y>
+      <width>451</width>
       <height>115</height>
      </rect>
     </property>
@@ -80,7 +85,7 @@ QPushButton:hover:!pressed {
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>730</y>
+      <y>720</y>
       <width>446</width>
       <height>115</height>
      </rect>
@@ -123,7 +128,7 @@ QPushButton:hover:!pressed {
     <property name="geometry">
      <rect>
       <x>710</x>
-      <y>730</y>
+      <y>720</y>
       <width>446</width>
       <height>115</height>
      </rect>
@@ -170,11 +175,15 @@ QPushButton:hover:!pressed {
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
       <pointsize>28</pointsize>
      </font>
     </property>
     <property name="text">
      <string>Object Identifier</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="definitionLabel">
@@ -191,35 +200,129 @@ QPushButton:hover:!pressed {
       <pointsize>16</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true"> </string>
+    </property>
+    <property name="lineWidth">
+     <number>5</number>
+    </property>
     <property name="text">
      <string>Definition</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+    <property name="margin">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="imageLabel">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>90</y>
-      <width>800</width>
-      <height>600</height>
+      <x>40</x>
+      <y>0</y>
+      <width>891</width>
+      <height>601</height>
      </rect>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
     </property>
     <property name="lineWidth">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="loadingWindow">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>250</y>
+      <width>361</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #ffffff;
+border-color: #000000;
+border-width: 3px;
+border-style: outset</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="loadingText">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>260</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #ffffff;
+color: #000000</string>
+    </property>
+    <property name="text">
+     <string>Loading...</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>340</y>
+      <width>361</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;
+color: black;
+border-style: solid;
+border-width: 3px;
+border-top: 0px
+
+</string>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>imageLabel</zorder>
    <zorder>recaptureButton</zorder>
    <zorder>continueButton</zorder>
    <zorder>objectNameLabel</zorder>
    <zorder>definitionLabel</zorder>
-   <zorder>imageLabel</zorder>
    <zorder>captureButton</zorder>
+   <zorder>loadingWindow</zorder>
+   <zorder>loadingText</zorder>
+   <zorder>progressBar</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -3,6 +3,18 @@
 
 #include <QMainWindow>
 #include <QTextToSpeech>
+#include <QWebEngineView>
+#include <QTextToSpeech>
+#include <QMouseEvent>
+#include <QProcess>
+#include <QString>
+#include <QFile>
+#include <QTimer>
+#include <QTime>
+#include <QEventLoop>
+#include <QCoreApplication>
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,6 +31,9 @@ public:
     Ui::MainWindow* getUi();
     ~MainWindow();
 
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+
 private slots:
     void on_captureButton_clicked();
 
@@ -26,7 +41,15 @@ private slots:
 
     void on_continueButton_clicked(bool checked);
 
+    void onProcessComplete();
+
 private:
     Ui::MainWindow* ui;
+    QWebEngineView* view;
+    QProcess process;
+    int loadingVal;
+
+    void updateLoading();
+    void delay(double time);
 };
 #endif // MAINWINDOW_H
