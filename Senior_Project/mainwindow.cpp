@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    mode = "standard";
+
 
     loadingVal = 0;
 
@@ -23,23 +25,28 @@ MainWindow::MainWindow(QWidget *parent)
     ui->recaptureButton->setVisible(false);
     ui->continueButton->setVisible(false);
     ui->definitionLabel->setVisible(false);
-    ui->objectNameLabel->setVisible(false);
+    ui->objectNameLabel->setVisible(true);
     ui->recaptureButton->setCheckable(true);
     ui->continueButton->setCheckable(true);
     ui->imageLabel->setVisible(false);
     ui->definitionLabel->setWordWrap(true);
     ui->loadingWindow->setVisible(false);
     ui->loadingText->setVisible(false);
+    ui->comboBox->setVisible(true);
     ui->progressBar->setVisible(false);
     ui->progressBar->setRange(0,100);
+    ui->objectNameLabel->setText("Object Identifier");
     updateLoading();
 
     //displaying the videofeed from the web
     view = new QWebEngineView;
-    view->load(QUrl("http://192.168.1.214/"));
+    view->load(QUrl("http://192.168.231.63/"));
     view->setGeometry(225,90,800,600);
     view->setParent(ui->centralwidget);
     view->show();
+
+    /////////////////////////////////////////////////CHANGE TO MAKE THE PICTURE FIT
+    view->setZoomFactor(1.2);
 
     connect(&process, SIGNAL(readyReadStandardOutput()), this, SLOT(onProcessComplete()));
 
@@ -52,6 +59,85 @@ MainWindow::~MainWindow()
 {
     delete view;
     delete ui;
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    //float x = 0.0;
+    //float y = 0.0;
+    view->setGeometry(this->width()/2 - view->width()/2,
+                      this->height()/2-360,
+                      view->width(),
+                      view->height());
+
+    ui->captureButton->setGeometry(this->width()/2 - ui->captureButton->width()/2,
+                                   this->height()/2 + 300,
+                                   ui->captureButton->width(),
+                                   ui->captureButton->height());
+    //x = this->width()/ui->continueButton->width();
+    //y = this->width()/ui->continueButton->width();
+    //if text == new object
+
+
+    if (ui->recaptureButton->text() == "New Object") {
+        ui->imageLabel->setGeometry(this->width()/2 - ui->imageLabel->width()/2,
+                                    this->height()/2 - ui->imageLabel->height()/2,
+                                    ui->imageLabel->width(),
+                                    ui->imageLabel->height());
+
+
+        ui->definitionLabel->setGeometry(ui->imageLabel->x(),
+                                         80,
+                                         ui->imageLabel->width(),
+                                         ui->imageLabel->y() - ui->definitionLabel->y());
+        if(mode == "verbose")
+        {
+            ui->definitionLabel->setGeometry(ui->imageLabel->x(),
+                                             ui->objectNameLabel->y(),
+                                             ui->imageLabel->width(),
+                                             ui->imageLabel->y() - ui->definitionLabel->y());
+        }
+
+    }
+
+    else {
+        ui->imageLabel->setGeometry(this->width()/2 - ui->imageLabel->width()/2,
+                                    this->height()/2 - 360,
+                                    ui->imageLabel->width(),
+                                    ui->imageLabel->height());
+
+
+    }
+
+    ui->continueButton->setGeometry(this->width()/2 + 75,
+                                    this->height()/2 + 300,
+                                    ui->continueButton->width(),
+                                    ui->continueButton->height());
+
+    ui->recaptureButton->setGeometry(this->width()/2 - 521,
+                                     this->height()/2 + 300,
+                                     ui->recaptureButton->width(),
+                                     ui->recaptureButton->height());
+    ui->objectNameLabel->setGeometry(this->width()/2 - ui->objectNameLabel->width()/2,
+                                     10,
+                                     ui->objectNameLabel->width(),
+                                     ui->objectNameLabel->height());
+    /*ui->definitionLabel->setGeometry(this->width()/2 - ui->definitionLabel->width()/2,
+                                     80,
+                                     ui->objectNameLabel->width(),
+                                     ui->objectNameLabel->height());*/
+    ui->progressBar->setGeometry(this->width()/2 - ui->progressBar->width()/2,
+                                 this->height()/2 + 60,
+                                 ui->progressBar->width(),
+                                 ui->progressBar->height());
+    ui->loadingWindow->setGeometry(this->width()/2 - ui->loadingWindow->width()/2,
+                                   this->height()/2 - ui->loadingWindow->height()/2,
+                                   ui->loadingWindow->width(),
+                                   ui->loadingWindow->height());
+    ui->loadingText->setGeometry(this->width()/2 - ui->loadingText->width()/2,
+                                 this->height()/2 - ui->loadingText->height()/2,
+                                 ui->loadingText->width(),
+                                 ui->loadingText->height());
 }
 
 
@@ -109,16 +195,21 @@ void MainWindow::on_recaptureButton_clicked(bool checked)
         ui->continueButton->setText("Continue");
         ui->objectNameLabel->setVisible(false);
         ui->definitionLabel->setVisible(false);
-        ui->imageLabel->setGeometry(225, 90, 800, 600);
+        ui->definitionLabel->move(ui->definitionLabel->x(),60);
+        ui->imageLabel->setGeometry(225, 90, 800, 600); //////////////////////////
+        ui->imageLabel->setGeometry(this->width()/2 - ui->imageLabel->width()/2,
+                                    this->height()/2 - 360,
+                                    ui->imageLabel->width(),
+                                    ui->imageLabel->height());
 
     }
-    ui->objectNameLabel->setText("Object Name");
-    ui->objectNameLabel->setVisible(false);
+    ui->objectNameLabel->setVisible(true);
     ui->imageLabel->clear();
     ui->recaptureButton->setVisible(false);
     ui->continueButton->setVisible(false);
     ui->captureButton->setVisible(true);
-    ui->objectNameLabel->setText("Take another picture!");
+    ui->comboBox->setVisible(true);
+    ui->objectNameLabel->setText("Object Identifier");
 
     ui->imageLabel->setVisible(false);
     view->show();
@@ -143,7 +234,7 @@ void MainWindow::on_continueButton_clicked(bool checked)
         //DO CHATGPT STUFF FOR OBJECT IDENTIFICATION USING A PYTHON SCRIPT
 
         //QStringList params = QStringList() << "../Python/chatgptScript.py";
-        QStringList params = QStringList() << "../Python/chatgptScript.py";
+        QStringList params = QStringList() << "../Python/chatgptScript.py" << mode;
         process.start("python", params);
 
         //DO LOADING SCREEN STUFF HERE
@@ -203,32 +294,54 @@ void MainWindow::onProcessComplete()
     updateLoading();
 
     ui->recaptureButton->setChecked(true);
+    ui->comboBox->setVisible(false);
     ui->continueButton->setChecked(true);
     ui->definitionLabel->setVisible(true);
     ui->objectNameLabel->setVisible(true);
-    ui->imageLabel->setGeometry(280,180, 704, 528);
+    ui->imageLabel->setGeometry(280,180, 704, 528);/////////////////////////////////////////////////
+    ui->imageLabel->setGeometry(this->width()/2 - ui->imageLabel->width()/2,
+                                this->height()/2 - ui->imageLabel->height()/2,
+                                ui->imageLabel->width(),
+                                ui->imageLabel->height());
+    ui->definitionLabel->setGeometry(ui->imageLabel->x(),
+                                     80,
+                                     ui->imageLabel->width(),
+                                     ui->imageLabel->y() - ui->definitionLabel->y());
 
-    ui->recaptureButton->setChecked(true);
-    ui->continueButton->setChecked(true);
-    ui->definitionLabel->setVisible(true);
-    ui->objectNameLabel->setVisible(true);
-    ui->imageLabel->setGeometry(280,180, 704, 528);
     qDebug("testing");
     QString proc_stdout = process.readAllStandardOutput();
     qDebug(proc_stdout.toLatin1());
 
-    QStringList lines = proc_stdout.split( ": ");
-    ui->objectNameLabel->setText(lines[0]);
-    ui->definitionLabel->setText(lines[1]);
 
-    QString text = ui->objectNameLabel->text() + " " + ui->definitionLabel->text();
+
+    if(mode == "standard"){
+        QStringList lines = proc_stdout.split( ": ");
+        ui->objectNameLabel->setText(lines[0]);
+        ui->definitionLabel->setText(lines[1]);
+
+        QString text = ui->objectNameLabel->text() + " " + ui->definitionLabel->text();
+        speech->say(text);
+
+    }
+    else{
+
+        ui->definitionLabel->move(ui->definitionLabel->x(), ui->objectNameLabel->y());
+        ui->definitionLabel->setGeometry(ui->imageLabel->x(),
+                                         ui->definitionLabel->y(),
+                                         ui->imageLabel->width(),
+                                         ui->imageLabel->y() - ui->definitionLabel->y());
+
+        ui->definitionLabel->setText(proc_stdout);
+        ui->objectNameLabel->setVisible(false);
+
+        QString text = ui->definitionLabel->text();
+        speech->say(text);
+    }
 
     //Say Name of Object
     //speech->say(ui->objectNameLabel->text());
 
     //Say Definition
-    speech->say(text);
-
     ui->recaptureButton->setText("New Object");
     ui->continueButton->setText("Replay Audio");
 
@@ -243,5 +356,12 @@ void MainWindow::delay(double time)
     QTime delay = QTime::currentTime().addMSecs(time);
     while (QTime::currentTime() < delay)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+}
+
+
+void MainWindow::on_comboBox_activated(int index)
+{
+    mode = ui->comboBox->currentText().toLower();
+    qDebug(mode.toLatin1());
 }
 

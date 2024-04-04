@@ -293,6 +293,38 @@ border-top: 0px
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>60</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid;
+border-radius: 57px;
+border-color: blue;
+background-color: #0021A5;
+color: white;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Standard</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Verbose</string>
+     </property>
+    </item>
+   </widget>
    <zorder>imageLabel</zorder>
    <zorder>recaptureButton</zorder>
    <zorder>continueButton</zorder>
@@ -302,6 +334,7 @@ border-top: 0px
    <zorder>loadingWindow</zorder>
    <zorder>loadingText</zorder>
    <zorder>progressBar</zorder>
+   <zorder>comboBox</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -309,7 +342,7 @@ border-top: 0px
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
