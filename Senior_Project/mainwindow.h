@@ -31,6 +31,8 @@ public:
     Ui::MainWindow* getUi();
     ~MainWindow();
 
+protected:
+    void resizeEvent(QResizeEvent *event) override;
 
 
 private slots:
@@ -42,6 +44,8 @@ private slots:
 
     void onProcessComplete();
 
+    void on_comboBox_activated(int index);
+
 private:
     Ui::MainWindow* ui;
     QWebEngineView* view;
@@ -50,5 +54,7 @@ private:
 
     void updateLoading();
     void delay(double time);
+
+    QString mode;
 };
 #endif // MAINWINDOW_H
