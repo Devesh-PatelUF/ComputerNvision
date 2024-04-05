@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->objectNameLabel->setVisible(true);
     ui->recaptureButton->setCheckable(true);
     ui->continueButton->setCheckable(true);
-    ui->imageLabel->setVisible(false);
+    ui->imageLabel->setVisible(true);
     ui->definitionLabel->setWordWrap(true);
     ui->loadingWindow->setVisible(false);
     ui->loadingText->setVisible(false);
@@ -47,6 +47,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     /////////////////////////////////////////////////CHANGE TO MAKE THE PICTURE FIT
     view->setZoomFactor(1.2);
+
+
+    ui->imageLabel->setVisible(true);
+    ui->imageLabel->clear();
+    ui->imageLabel->raise();
+    //view->setStyleSheet("border-color: #0021A5; border-style: solid; border-width: 13px; border-radius: 15px;");
 
     connect(&process, SIGNAL(readyReadStandardOutput()), this, SLOT(onProcessComplete()));
 
@@ -122,10 +128,10 @@ void MainWindow::resizeEvent(QResizeEvent *event)
                                      10,
                                      ui->objectNameLabel->width(),
                                      ui->objectNameLabel->height());
-    /*ui->definitionLabel->setGeometry(this->width()/2 - ui->definitionLabel->width()/2,
-                                     80,
-                                     ui->objectNameLabel->width(),
-                                     ui->objectNameLabel->height());*/
+    ui->comboBox->setGeometry(this->width()/2 - 600,
+                                     150,
+                                     ui->comboBox->width(),
+                                     ui->comboBox->height());
     ui->progressBar->setGeometry(this->width()/2 - ui->progressBar->width()/2,
                                  this->height()/2 + 60,
                                  ui->progressBar->width(),
@@ -211,7 +217,9 @@ void MainWindow::on_recaptureButton_clicked(bool checked)
     ui->comboBox->setVisible(true);
     ui->objectNameLabel->setText("Object Identifier");
 
-    ui->imageLabel->setVisible(false);
+    ui->imageLabel->setVisible(true);
+    ui->imageLabel->clear();
+    ui->imageLabel->raise();
     view->show();
 }
 
@@ -238,6 +246,7 @@ void MainWindow::on_continueButton_clicked(bool checked)
         process.start("python", params);
 
         //DO LOADING SCREEN STUFF HERE
+        ui->imageLabel->lower();
         ui->loadingWindow->setVisible(true);
         ui->loadingText->setVisible(true);
         ui->progressBar->setVisible(true);
@@ -293,6 +302,7 @@ void MainWindow::onProcessComplete()
     loadingVal = 0;
     updateLoading();
 
+    ui->imageLabel->raise();
     ui->recaptureButton->setChecked(true);
     ui->comboBox->setVisible(false);
     ui->continueButton->setChecked(true);
