@@ -78,7 +78,7 @@ void setup()
     cout << "OV3660" << endl;
     s->set_vflip(s, 1);          // flip it back
     s->set_brightness(s, 4);     // up the blightness just a bit
-    s->set_saturation(s, 2);    // lower the saturation
+    s->set_saturation(s, 2);     // lower the saturation
     s->set_special_effect(s, 0); // 0 to 6 (0 - No Effect, 1 - Negative, 2 - Grayscale, 3 - Red Tint, 4 - Green Tint, 5 - Blue Tint, 6 - Sepia)  server.begin();
     s->set_colorbar(s, 0);       // 0 to 6 (0 - No Effect, 1 - Negative, 2 - Grayscale, 3 - Red Tint, 4 - Green Tint, 5 - Blue Tint, 6 - Sepia)  server.begin();
   }
@@ -109,7 +109,6 @@ void setup()
 }
 
 String header;
-
 
 // Current time
 unsigned long currentTime = millis();
@@ -164,17 +163,21 @@ void loop()
         {
           digitalWrite(4, HIGH);
           vTaskDelay(500 / portTICK_PERIOD_MS);
-          camera_buf = esp_camera_fb_get();
-          if (!camera_buf)
+
+          for (int i = 0;i<1000;i++)
           {
-            cout << "Camera capture failed" << endl;
-            code = 500;
+            camera_buf = esp_camera_fb_get();
+            if (!camera_buf)
+            {
+              cout << "Camera capture failed" << endl;
+              code = 500;
+            }
+            else
+            {
+              content_type = "Content-type: image/jpeg";
+            }
+            esp_camera_fb_return(camera_buf);
           }
-          else
-          {
-            content_type = "Content-type: image/jpeg";
-          }
-          esp_camera_fb_return(camera_buf);
           digitalWrite(4, LOW);
         }
         string return_string = (string("HTTP/1.1 ") + to_string(code) + " OK");
@@ -190,7 +193,6 @@ void loop()
         client.stop();
         Serial.println("Client disconnected.");
         Serial.println("");
-        
       }
     }
   }
