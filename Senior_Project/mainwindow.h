@@ -46,6 +46,8 @@ private slots:
 
     void on_comboBox_activated(int index);
 
+    void on_reloadButton_clicked();
+
 private:
     Ui::MainWindow* ui;
     QWebEngineView* view;

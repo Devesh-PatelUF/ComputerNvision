@@ -1,3 +1,9 @@
+
+
+
+
+
+
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
@@ -17,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->imageLabel->setScaledContents(true);
     ui->imageLabel->setGeometry(225, 90, 800, 600);
+
 
 
 
@@ -45,8 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     view->setParent(ui->centralwidget);
     view->show();
 
-    /////////////////////////////////////////////////CHANGE TO MAKE THE PICTURE FIT
-    view->setZoomFactor(1.2);
+    view->setZoomFactor(1.21);
 
 
     ui->imageLabel->setVisible(true);
@@ -65,6 +71,8 @@ MainWindow::~MainWindow()
 {
     delete view;
     delete ui;
+    delete speech;
+
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)
@@ -144,6 +152,10 @@ void MainWindow::resizeEvent(QResizeEvent *event)
                                  this->height()/2 - ui->loadingText->height()/2,
                                  ui->loadingText->width(),
                                  ui->loadingText->height());
+    ui->reloadButton->setGeometry(this->width()/2 + 420,
+                                  this->height()/2 - 350,
+                                  ui->reloadButton->width(),
+                                  ui->reloadButton->height());
 }
 
 
@@ -175,6 +187,7 @@ void MainWindow::on_captureButton_clicked()
 
 
     ui->recaptureButton->setChecked(false);
+    ui->reloadButton->setVisible(false);
     ui->continueButton->setChecked(false);
     ui->objectNameLabel->setText("Is this picture correct?");
     ui->objectNameLabel->setVisible(true);
@@ -207,6 +220,7 @@ void MainWindow::on_recaptureButton_clicked(bool checked)
                                     this->height()/2 - 360,
                                     ui->imageLabel->width(),
                                     ui->imageLabel->height());
+        speech->stop();
 
     }
     ui->objectNameLabel->setVisible(true);
@@ -218,6 +232,7 @@ void MainWindow::on_recaptureButton_clicked(bool checked)
     ui->objectNameLabel->setText("Object Identifier");
 
     ui->imageLabel->setVisible(true);
+    ui->reloadButton->setVisible(true);
     ui->imageLabel->clear();
     ui->imageLabel->raise();
     view->show();
@@ -325,9 +340,16 @@ void MainWindow::onProcessComplete()
 
 
     if(mode == "standard"){
-        QStringList lines = proc_stdout.split( ": ");
-        ui->objectNameLabel->setText(lines[0]);
-        ui->definitionLabel->setText(lines[1]);
+        if(proc_stdout.contains(":") == false)
+        {
+            ui->objectNameLabel->setText("Error");
+            ui->definitionLabel->setText("There was an issue with identifying the object. Please try again! ");
+        }
+        else{
+            QStringList lines = proc_stdout.split( ": ");
+            ui->objectNameLabel->setText(lines[0]);
+            ui->definitionLabel->setText(lines[1]);
+        }
 
         QString text = ui->objectNameLabel->text() + " " + ui->definitionLabel->text();
         speech->say(text);
@@ -373,5 +395,21 @@ void MainWindow::on_comboBox_activated(int index)
 {
     mode = ui->comboBox->currentText().toLower();
     qDebug(mode.toLatin1());
+}
+
+
+
+void MainWindow::on_reloadButton_clicked()
+{
+    QRect temp = view->geometry();
+    delete view;
+    view = new QWebEngineView;
+    view->load(QUrl("http://192.168.231.63/"));
+    view->setGeometry(temp);
+    view->setParent(ui->centralwidget);
+    view->show();
+    view->lower();
+
+    view->setZoomFactor(1.21);
 }
 
