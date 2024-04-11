@@ -23,8 +23,7 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #f3957c
-</string>
+   <string notr="true">background-color: #ffc3a6</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="captureButton">
@@ -54,7 +53,7 @@
     <property name="styleSheet">
      <string notr="true">QPushBuuton{
 	border: 1px solid;
-	border-radius: 57px;
+	border-radius: 50px;
 	border-color: blue;
 }
 
@@ -165,9 +164,9 @@ QPushButton:hover:!pressed {
    <widget class="QLabel" name="objectNameLabel">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>200</x>
       <y>-10</y>
-      <width>411</width>
+      <width>821</width>
       <height>51</height>
      </rect>
     </property>
@@ -175,14 +174,20 @@ QPushButton:hover:!pressed {
      <font>
       <family>Cooper Black</family>
       <pointsize>26</pointsize>
-      <bold>false</bold>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: qlineargradient(x1:50, y1:0, x2:550, y2:0, stop:0 #0021A5
+, stop:1 #FA4616);
+
+</string>
     </property>
     <property name="text">
      <string>Object Identifier</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignHCenter|Qt::AlignTop</set>
     </property>
    </widget>
    <widget class="QLabel" name="definitionLabel">
@@ -200,6 +205,11 @@ QPushButton:hover:!pressed {
       <pointsize>16</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: qlineargradient(x1:50, y1:0, x2:500, y2:0, stop:0 #0021A5
+, stop:1 #FA4616);
+</string>
+    </property>
     <property name="text">
      <string>Definition</string>
     </property>
@@ -212,6 +222,16 @@ QPushButton:hover:!pressed {
       <width>800</width>
       <height>600</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: #0021A5;
+border-style: solid;
+border-width: 13px;
+border-radius: 15px;
+background: transparent;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -259,6 +279,7 @@ border-style: outset</string>
     </property>
     <property name="font">
      <font>
+      <family>Cooper Black</family>
       <pointsize>20</pointsize>
       <kerning>true</kerning>
      </font>
@@ -285,6 +306,12 @@ color: #000000</string>
       <width>361</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cooper Black</family>
+      <pointsize>13</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: white;
@@ -314,15 +341,31 @@ border-top: 0px
     <property name="font">
      <font>
       <family>Cooper Black</family>
-      <pointsize>18</pointsize>
+      <pointsize>16</pointsize>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: 1px solid;
-border-radius: 57px;
-border-color: blue;
-background-color: #0021A5;
-color: white;</string>
+     <string notr="true">QComboBox {
+	border: 1px solid;
+	background-color: #0021A5;
+	color: white;
+	border-radius: 50px;
+	border-color: blue;
+}
+
+QComboBox:pressed {
+	background-color: #6b87f1;
+	color: #fffffe;
+}
+QComboBox:hover:!pressed {
+	background-color: #E1f4FF;
+	color: #0c2f70
+}
+
+QComboBox QAbstractItemView {
+	background-color: #6b87f1;
+	color: #fffffe;
+}</string>
     </property>
     <item>
      <property name="text">
@@ -335,6 +378,193 @@ color: white;</string>
      </property>
     </item>
    </widget>
+   <widget class="QPushButton" name="reloadButton">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Wingdings 3</family>
+      <pointsize>22</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushBuuton{
+	border: 1px solid;
+	border-radius: 5px;
+	border-color: blue;
+}
+
+QPushButton:enabled {
+	border-radius: 25px;
+	background-color: #0021A5;
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #6b87f1;
+	color: #fffffe;
+}
+QPushButton:hover:!pressed {
+	background-color: #E1f4FF;
+	color: #0c2f70
+}</string>
+    </property>
+    <property name="text">
+     <string>Q</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>250</y>
+      <width>361</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cooper Black</family>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #ffffff;
+border-color: #000000;
+border-width: 7px;
+border-style: outset</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reloadButton_2">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>180</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Wingdings</family>
+      <pointsize>22</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushBuuton{
+	border: 1px solid;
+	border-radius: 5px;
+	border-color: blue;
+}
+
+QPushButton:enabled {
+	border-radius: 25px;
+	background-color: #0021A5;
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #6b87f1;
+	color: #fffffe;
+}
+QPushButton:hover:!pressed {
+	background-color: #E1f4FF;
+	color: #0c2f70
+}</string>
+    </property>
+    <property name="text">
+     <string>]</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_2">
+    <property name="geometry">
+     <rect>
+      <x>84</x>
+      <y>5</y>
+      <width>231</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cooper Black</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox {
+	border: 1px solid;
+	background-color: #0021A5;
+	color: white;
+	border-radius: 50px;
+	border-color: blue;
+}
+
+QComboBox:pressed {
+	background-color: #6b87f1;
+	color: #fffffe;
+}
+QComboBox:hover:!pressed {
+	background-color: #E1f4FF;
+	color: #0c2f70
+}
+
+QComboBox QAbstractItemView {
+	background-color: #6b87f1;
+	color: #fffffe;
+}</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reloadButton_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>2</y>
+      <width>51</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Wingdings</family>
+      <pointsize>22</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushBuuton{
+	border: 1px solid;
+	border-radius: 5px;
+	border-color: blue;
+}
+
+QPushButton:enabled {
+	border-radius: 25px;
+	background-color: #0021A5;
+	color: white;
+}
+
+QPushButton:pressed {
+	background-color: #6b87f1;
+	color: #fffffe;
+}
+QPushButton:hover:!pressed {
+	background-color: #E1f4FF;
+	color: #0c2f70
+}</string>
+    </property>
+    <property name="text">
+     <string>h</string>
+    </property>
+   </widget>
    <zorder>imageLabel</zorder>
    <zorder>recaptureButton</zorder>
    <zorder>continueButton</zorder>
@@ -345,6 +575,11 @@ color: white;</string>
    <zorder>loadingText</zorder>
    <zorder>progressBar</zorder>
    <zorder>comboBox</zorder>
+   <zorder>reloadButton</zorder>
+   <zorder>textEdit</zorder>
+   <zorder>reloadButton_2</zorder>
+   <zorder>comboBox_2</zorder>
+   <zorder>reloadButton_3</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

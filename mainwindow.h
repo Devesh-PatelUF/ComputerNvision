@@ -44,7 +44,17 @@ private slots:
 
     void onProcessComplete();
 
+    void onProcessError(QProcess::ProcessError error);
+
+    void onProcessError_();
+
     void on_comboBox_activated(int index);
+
+    void on_reloadButton_clicked();
+
+    void on_reloadButton_2_clicked(bool checked);
+
+    void on_comboBox_2_activated(int index);
 
 private:
     Ui::MainWindow* ui;
@@ -56,5 +66,6 @@ private:
     void delay(double time);
 
     QString mode;
+    QString url;
 };
 #endif // MAINWINDOW_H
