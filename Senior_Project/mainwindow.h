@@ -28,7 +28,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    Ui::MainWindow* getUi();
+    Ui::MainWindow* getUi(); //TESTING ONLY FUNCTION. NEED FOR TESTING PROJECT. DO NOT USE OTHERWISE
     ~MainWindow();
 
 protected:
@@ -44,7 +44,18 @@ private slots:
 
     void onProcessComplete();
 
+
+    void onProcessError_();
+
     void on_comboBox_activated(int index);
+
+    void on_reloadButton_clicked();
+
+    void on_reloadButton_2_clicked(bool checked);
+
+    void on_comboBox_2_activated(int index);
+
+    void on_reloadButton_3_clicked();
 
 private:
     Ui::MainWindow* ui;
@@ -56,5 +67,6 @@ private:
     void delay(double time);
 
     QString mode;
+    QString url;
 };
 #endif // MAINWINDOW_H
