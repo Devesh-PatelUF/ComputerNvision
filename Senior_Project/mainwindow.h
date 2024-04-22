@@ -1,9 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "myudp.h"
+
 #include <QMainWindow>
 #include <QTextToSpeech>
-#include <QWebEngineView>
+#include <QGraphicsScene>
+#include <QTimer>
 
 
 
@@ -32,6 +35,9 @@ private slots:
 
 private:
     Ui::MainWindow* ui;
-    QWebEngineView* view;
+    QGraphicsView* view;
+    MyUDP* my_udp;
+    QTimer* time;
+
 };
 #endif // MAINWINDOW_H
