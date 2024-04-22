@@ -7,5 +7,3 @@ Download Qt Creator, with QT 6.4 or greater, all additional libraries, and the M
 Open senior_project.pro in Qt Creator and configure with MSVC 2019. 
 
 The project should run with this configuration.
-
-The release version should run on its own.
